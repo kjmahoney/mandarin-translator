@@ -1,0 +1,36 @@
+Translator Project folder
+--index.html
+--app.js
+--server.js
+--pinyin
+
+Project 1:
+
+Step 1:
+First page translate
+Input field for english.
+Makes call to zandex API
+returns characters, which makes call to pinyin API
+
+Step 2:
+Characters can be saved to database (consider, adding hsk field to filter), future combine project 2
+When user translates, first pull from database, if not make zandex call (notify its a new word)
+
+Step 3
+Characters can be added to decks
+Add logic for learned words and not learned
+Load in hsk words
+
+Step 4
+Gameify lerning, itegrate phaser
+
+
+Project 2: HSK API
+Similar to other project but exclusively HSK words
+(possible to combine projects by adding HSK marker in database, and share database)
+
+
+Project 3: Chengyu (Stand alone app)
+Exclusive chengyu
+save chengyu and mark as learned
+fields for context etc.
