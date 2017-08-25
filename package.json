@@ -6,6 +6,7 @@
   "dependencies": {},
   "devDependencies": {
     "browserify": "^14.4.0",
+    "express": "^4.15.4",
     "pinyin": "^2.8.3",
     "watchify": "^3.9.0"
   },
