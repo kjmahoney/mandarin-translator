@@ -1,6 +1,3 @@
-var pinyin = require("./pinyin");
-console.log(pinyin('中心'));
-
 const translate = function(e) {
   e.preventDefault();
 
