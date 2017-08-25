@@ -1,12 +1,11 @@
-//add auto refresh
 //add language swap
 //add on change
 //need to add translation loop for pinyin
-
 const pinyin = require("pinyin");
 
 const translate = function(e) {
   e.preventDefault();
+  console.log('firing');
 
   let word = document.getElementById('translate-input').value;
 
@@ -30,4 +29,4 @@ const translate = function(e) {
   })
 }
 
-document.getElementById('translate-input-form').addEventListener('submit', translate);
+document.getElementById('translate-input').addEventListener('change', translate);
