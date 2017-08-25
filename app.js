@@ -1,3 +1,8 @@
+//add auto refresh
+//add language swap
+//add on change
+//need to add translation loop for pinyin
+
 const pinyin = require("pinyin");
 
 const translate = function(e) {
@@ -17,10 +22,8 @@ const translate = function(e) {
 
   fetch(request).then((response) => {
     return response.json().then(function(json){
-      console.log('working')
-      word = json.text[0]
-      let pronounce = pinyin(word)
-      console.log(pronounce[0][0]);
+      word = json.text[0];
+      let pronounce = pinyin(word);
       document.getElementById('translate-output').innerHTML = json.text[0];
       document.getElementById('pronounce-output').innerHTML = pronounce[0][0];
     })
