@@ -1,44 +1,41 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-// @TODO
-//add on change
-//need to add translation loop for pinyin
-//es6 interpolation
-//if chinese is input then
 const pinyin = require("pinyin");
 
 const translate = function(e) {
   e.preventDefault();
-  console.log('firing');
 
   let word = document.getElementById('translate-input').value;
   let fromLanguage = document.getElementById('translate-from-dropdown').value;
-  let languageUrl;
+  let languageUrl = '&lang=en-zh';
 
-  if (fromLanguage === 'en') {
-    languageUrl = '&lang=en-zh'
-  } else {
+  if (fromLanguage === 'zh') {
     languageUrl = '&lang=zh-en'
   }
 
-  let APIUrl = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trns"+
-  "l.1.1.20161224T005353Z.9e104eecc7c8560f.938a2af78ac0f6868c443d729e48ee590e87d897&text="
+  let APIUrl = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=trns'
+  +'l.1.1.20161224T005353Z.9e104eecc7c8560f.938a2af78ac0f6868c443d729e48ee590e87d897&text='
   +word
   +languageUrl
-
 
   let request = new Request(APIUrl);
 
   fetch(request).then((response) => {
     return response.json().then(function(json){
-      //if user inputs chinese word then pinyin the chinese in input field
+      //if user inputs chinese word then pinyin the characters in input field
       let pronounce = pinyin(word);
       //if user inputs english, pinyin the chinese json response
       if (fromLanguage === 'en') {
           pronounce = pinyin(json.text[0]);
       }
+      //pinyin returns an array of each character translated so make string
+      let pinyinArray = [];
+
+      for (i=0;i<pronounce.length;i++) {
+        pinyinArray.push(pronounce[i][0]);
+      }
 
       document.getElementById('translate-output').innerHTML = json.text[0];
-      document.getElementById('pronounce-output').innerHTML = pronounce[0][0];
+      document.getElementById('pronounce-output').innerHTML = pinyinArray.join('');
     })
   })
 }
