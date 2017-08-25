@@ -1,5 +1,4 @@
 const sitePath = process.argv[2] || '.';
-const port = 4000;
 const express = require('express');
 const app = express();
 
@@ -11,6 +10,4 @@ app.use((req, res, next) => {
 
 app.use(express.static(__dirname + '/' + sitePath));
 
-app.listen(port, () => {
-  console.log('server running at ' + port);
-});
+app.listen(4000);
