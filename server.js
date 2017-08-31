@@ -1,6 +1,11 @@
 const sitePath = process.argv[2] || '.';
 const express = require('express');
 const app = express();
+const port = 4000;
+
+let testJson = {
+  name: "kevin"
+}
 
 app.use((req, res, next) => {
   console.log(req.url);
@@ -8,6 +13,12 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/data', (req,res)=> {
+  res.json(json);
+})
+
 app.use(express.static(__dirname + '/' + sitePath));
 
-app.listen(4000);
+app.listen(port, ()=>{
+  console.log(`server running at ${port}`);
+});
