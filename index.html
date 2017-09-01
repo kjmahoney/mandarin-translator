@@ -2,19 +2,25 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Translate</title>
     <link rel="stylesheet" href="./style.css">
   </head>
   <body>
-    <input id="translate-input" type="text" name="" value="">
+    <div class="c-container">
 
-    <select id = "translate-from-dropdown">
-        <option value="en">English</option>
-        <option value="zh">Chinese</option>
-    </select>
 
-    <p id="translate-output"></p>
-    <p id="pronounce-output"></p>
+    <div class="c-translator">
+        <select class="c-translator__field c-translator__toggle" id = "translate-from-dropdown">
+            <option value="en">English</option>
+            <option value="zh">Chinese</option>
+          </select>
+        <input class="c-translator__field c-translator__input" id="translate-input" type="text" name="" value="">
+        <p class="c-translator__field c-translator__output" id="translate-output"></p>
+        <p class="c-translator__field c-translator__pinyin" id="pronounce-output"></p>
+    </div>
+    </div>
+
     <script src="bundle.js" charset="utf-8"></script>
   </body>
 </html>

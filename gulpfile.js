@@ -14,12 +14,19 @@ gulp.task('bundle', function() {
 
 gulp.task('watch', () => {
   gulp.watch('./**/*.css', ['css']);
+  gulp.watch('./**/*.css', ['html']);
   gulp.watch('./**/*.js', ['js', 'bundle']);
 });
 
 gulp.task('css', () => {
   return gulp
           .src('style.css')
+          .pipe(browserSync.stream());
+});
+
+gulp.task('html', () => {
+  return gulp
+          .src('index.html')
           .pipe(browserSync.stream());
 });
 

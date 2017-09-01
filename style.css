@@ -1,3 +1,32 @@
 body {
+  align-items: center;
   background-color: grey;
+  display: flex;
+  justify-content: center;
+}
+
+.c-container {
+  padding: 10vw;
+  width: 100%;
+}
+
+.c-translator {
+  align-items: center;
+  background-color: lightblue;
+  border: 1px solid black;
+  display: flex;
+  padding: 8px;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.c-translator__field {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.c-translator__input {
+  height: 20vw ;
+  text-align: center;
 }
