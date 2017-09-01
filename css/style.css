@@ -1,0 +1,50 @@
+body {
+  align-items: center;
+  display: flex;
+  justify-content: center; }
+
+.c-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  min-width: 320px; }
+
+.c-hed {
+  font-family: fantasy;
+  text-shadow: 2px 2px #dbdbdb; }
+
+.c-translator {
+  align-items: center;
+  background-color: white;
+  border: 1px solid black;
+  box-shadow: 10px 10px 5px #dbdbdb;
+  display: flex;
+  margin: 0 8px;
+  padding: 8px;
+  flex-direction: column;
+  justify-content: center; }
+
+.c-translator__field {
+  margin: 0 0 16px 0;
+  font-size: 32px; }
+
+.c-translator__toggle {
+  font-size: 20px; }
+
+.c-translator__input {
+  border: 1px solid #dbdbdb;
+  height: 15vw;
+  max-height: 60px;
+  text-align: center;
+  width: 80%; }
+
+::placeholder {
+  font-size: 16px;
+  opacity: 0.5; }
+
+.c-translator__output {
+  height: 32px;
+  margin-bottom: 8px; }
+
+.c-translator__pinyin {
+  height: 32px; }
