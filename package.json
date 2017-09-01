@@ -12,13 +12,10 @@
     "express": "^4.15.4",
     "gulp": "^3.9.1",
     "mongoose": "^4.11.8",
-    "pinyin": "^2.8.3",
-    "watchify": "^3.9.0"
+    "pinyin": "^2.8.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify app.js -o bundle.js",
-    "watch": "watchify app.js -o bundle.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",

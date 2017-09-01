@@ -1,42 +1,20 @@
-// https://coderwall.com/p/0vlbxq/using-gulp-with-browserify-and-watchify
-// https://www.sitepoint.com/getting-started-browserify/
-
 const gulp = require('gulp');
 const browserSync = require('browser-sync');
 const browserify = require('browserify');
-const watchify = require('watchify');
 const source = require('vinyl-source-stream');
-const sourceFile = 'app.js';
-const destFolder = './';
-const destFile = 'findem.js';
 
-gulp.task('default', ['watch', 'serve', 'browserify']);
+gulp.task('default', ['watch', 'serve']);
 
-gulp.task('browserify', function() {
-
-  var bundler = browserify({
-    // Required watchify args
-    cache: {}, packageCache: {}, fullPaths: true,
-  });
-
-  var bundle = function() {
-    return bundler
-      .bundle()
-      .pipe(source('app.js'))
-      .pipe(gulp.dest('bundle.js'));
-  };
-
-  if(global.isWatching) {
-    bundler = watchify(bundler);
-    bundler.on('update', bundle);
-  }
-
-  return bundle();
-});
+gulp.task('bundle', function() {
+  return browserify('./app')
+          .bundle()
+          .pipe(source('bundle.js'))
+          .pipe(gulp.dest('./'));
+})
 
 gulp.task('watch', () => {
   gulp.watch('./**/*.css', ['css']);
-  gulp.watch('./**/*.js', ['js']);
+  gulp.watch('./**/*.js', ['js', 'bundle']);
 });
 
 gulp.task('css', () => {

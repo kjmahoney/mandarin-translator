@@ -1,5 +1,4 @@
 const pinyin = require("pinyin");
-console.log('kevin');
 const translate = function(e) {
   e.preventDefault();
 

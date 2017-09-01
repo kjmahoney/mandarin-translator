@@ -14,3 +14,6 @@ Can also quiz random
 https://github.com/ga-wdi-lessons/express-mongoose
 
 http://edvinsantonovs.co.uk/how-to-migrate-local-mongodb-to-remote/
+
+"build": "browserify app.js -o bundle.js",
+"watch": "watchify app.js -o bundle.js"
