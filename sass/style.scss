@@ -1,5 +1,4 @@
 $light-grey: #dbdbdb;
-$font-field: 32px;
 
 // html,body {
 //    margin: 0;
@@ -39,7 +38,7 @@ body {
 
 .c-translator__field {
   margin: 0 0 16px 0;
-  font-size: $font-field;
+  font-size: 32px;
 }
 
 .c-translator__toggle {
@@ -60,10 +59,10 @@ body {
 }
 
 .c-translator__output {
-  height: $font-field;
   margin-bottom: 8px;
 }
 
 .c-translator__pinyin {
-  height: $font-field;
+  word-break: break-all;
+  font-size: 20px;
 }

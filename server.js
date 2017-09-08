@@ -1,11 +1,23 @@
 const sitePath = process.argv[2] || '.';
 const express = require('express');
+const bodyParser = require('body-parser');
+const _ = require('lodash');
 const app = express();
 const port = 4000;
 
-let testJson = {
-  name: "kevin"
-}
+const idiomsArray = [
+  {id: '0',
+   chinese: '帅'
+ },
+  {id: '1',
+  chinese: '难看'
+  }
+];
+const id = 2;
+
+// app.use(express.static(__dirname + '/' + sitePath));
+// app.use(bodyParser.urlencoded({extended: true}));
+// app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   console.log(req.url);
@@ -13,11 +25,14 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/data', (req,res)=> {
-  res.json(json);
+app.get('/idioms', (req,res)=> {
+  res.json(idiomsArray);
 })
 
-app.use(express.static(__dirname + '/' + sitePath));
+app.get('/idioms/:id', (req, res) => {
+  let idiom = _.find(idiomsArray, {id: req.params.id});
+  res.json(idiom || {});
+})
 
 app.listen(port, ()=>{
   console.log(`server running at ${port}`);

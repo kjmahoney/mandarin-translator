@@ -2,6 +2,10 @@
 Basic translate on frontend
 
 2-
+Save words.
+Button under characters
+
+2-
 Save words to database
 Can save words into particular decks
 Can view by deck
@@ -9,11 +13,3 @@ Can view by deck
 3-
 Quiz mode, can quiz on deck
 Can also quiz random
-
-
-https://github.com/ga-wdi-lessons/express-mongoose
-
-http://edvinsantonovs.co.uk/how-to-migrate-local-mongodb-to-remote/
-
-"build": "browserify app.js -o bundle.js",
-"watch": "watchify app.js -o bundle.js"

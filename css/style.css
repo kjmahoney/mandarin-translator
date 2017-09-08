@@ -43,8 +43,8 @@ body {
   opacity: 0.5; }
 
 .c-translator__output {
-  height: 32px;
   margin-bottom: 8px; }
 
 .c-translator__pinyin {
-  height: 32px; }
+  word-break: break-all;
+  font-size: 20px; }
