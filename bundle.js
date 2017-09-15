@@ -33,8 +33,8 @@ const translate = function(e) {
         pinyinArray.push(pronounce[i][0]);
       }
 
-      document.getElementById('translate-output').innerHTML = json.text[0];
-      document.getElementById('pronounce-output').innerHTML = pinyinArray.join('');
+      document.getElementById('translate-output').value = json.text[0];
+      document.getElementById('pronounce-output').value = pinyinArray.join('');
     })
   })
 }

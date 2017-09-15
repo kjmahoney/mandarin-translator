@@ -7,18 +7,20 @@
     <link rel="stylesheet" href="./css/style.css">
   </head>
   <body>
-
     <div class="c-container">
       <h1 class="c-hed">Translate</h1>
       <div class="c-translator">
         <select class="c-translator__field c-translator__toggle" id = "translate-from-dropdown">
             <option value="en">En-Ch</option>
             <option value="zh">Ch-En</option>
-          </select>
-        <input class="c-translator__field c-translator__input" id="translate-input" type="text" name="" value="" placeholder="Input text here">
-    </div>
-    <p class="c-translator__field c-translator__output" id="translate-output"></p>
-    <p class="c-translator__field c-translator__pinyin" id="pronounce-output"></p>
+        </select>
+        <form action="/" method="post">
+        <input class="c-translator__field c-translator__input" id="translate-input" type="text" name="input" value="" placeholder="Input text here">
+        <input type="submit">
+        </div>
+    <input class="c-translator__field c-translator__output" id="translate-output" name="output"></input>
+    <input class="c-translator__field c-translator__pinyin" id="pronounce-output" name="outputPronounce"></input>
+  </form>
     </div>
 
     <script src="bundle.js" charset="utf-8"></script>

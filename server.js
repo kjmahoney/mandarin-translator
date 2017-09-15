@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const _ = require('lodash');
 const app = express();
 const port = 4000;
+const hbs = require('hbs');
 
 const idiomsArray = [
   {id: '0',
@@ -15,9 +16,11 @@ const idiomsArray = [
 ];
 const id = 2;
 
-// app.use(express.static(__dirname + '/' + sitePath));
-// app.use(bodyParser.urlencoded({extended: true}));
-// app.use(bodyParser.json());
+app.use(express.static(__dirname + '/' + sitePath));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
+app.set('view-engine', 'hbs');
 
 app.use((req, res, next) => {
   console.log(req.url);
@@ -32,6 +35,14 @@ app.get('/idioms', (req,res)=> {
 app.get('/idioms/:id', (req, res) => {
   let idiom = _.find(idiomsArray, {id: req.params.id});
   res.json(idiom || {});
+})
+
+app.post('/', (req,res) => {
+  let data = req.body;
+  console.log(data);
+  console.log(data.input);
+  console.log(data.output);
+  console.log(data.outputPronounce);
 })
 
 app.listen(port, ()=>{
