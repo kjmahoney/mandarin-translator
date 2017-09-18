@@ -19,7 +19,7 @@ body {
   border: 1px solid black;
   box-shadow: 10px 10px 5px #dbdbdb;
   display: flex;
-  margin: 0 8px;
+  margin: 0 8px 16px 0;
   padding: 8px;
   flex-direction: column;
   justify-content: center; }
@@ -43,9 +43,17 @@ body {
   font-size: 16px;
   opacity: 0.5; }
 
+.c-translator__form {
+  align-items: center;
+  display: flex;
+  flex-direction: column; }
+
 .c-translator__output {
+  border: none; }
+
+.c-translator__output--pronounce {
   margin-bottom: 8px; }
 
-.c-translator__pinyin {
+.c-translator__output--pinyin {
   word-break: break-all;
   font-size: 20px; }

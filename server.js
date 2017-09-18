@@ -6,15 +6,19 @@ const app = express();
 const port = 4000;
 const hbs = require('hbs');
 
-const idiomsArray = [
+const wordsArray = [
   {id: '0',
-   chinese: '帅'
+   chinese: '帅',
+   english: 'handsome',
+   pinyin: 'shuai4'
  },
   {id: '1',
-  chinese: '难看'
+  chinese: '难看',
+  english: 'ugly',
+  pinyin: 'nan2kan4',
   }
 ];
-const id = 2;
+let id = 2;
 
 app.use(express.static(__dirname + '/' + sitePath));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -28,21 +32,47 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/idioms', (req,res)=> {
-  res.json(idiomsArray);
+app.get('/vocabs', (req,res)=> {
+  res.json(wordsArray);
 })
 
-app.get('/idioms/:id', (req, res) => {
+app.get('/vocabs/:id', (req, res) => {
   let idiom = _.find(idiomsArray, {id: req.params.id});
   res.json(idiom || {});
 })
 
 app.post('/', (req,res) => {
   let data = req.body;
-  console.log(data);
-  console.log(data.input);
-  console.log(data.output);
-  console.log(data.outputPronounce);
+  wordsArray.push({id: String(id),
+                    chinese: data.output,
+                    english: data.input,
+                    pinyin: data.pinyin
+                  });
+  id +=1;
+  res.json(data);
+})
+
+app.put('/words/::id', (req, res)=> {
+  let update = req.body;
+
+  let word = _.findIndex(wordsArray, {id: req.params.id})
+  if (!words[word]) {
+    res.send();
+  } else {
+    let updatedWord = _.assign(wordsArray[word], update);
+    res.json(updatedWord);
+  }
+})
+
+app.delete('/vocabs/:id', (req, res)=> {
+  let word = _.findIndex(words, {id: req.params.id});
+  let deletedWord = words[word];
+  wordArray.splice(word, 1);
+  res.json(deletedWord)l
+})
+//Error handling for every route
+app.use((err, req, res, next) =>{
+  console.log(err);
 })
 
 app.listen(port, ()=>{
