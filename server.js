@@ -49,7 +49,6 @@ app.post('/', (req,res) => {
                     pinyin: data.pinyin
                   });
   id +=1;
-  res.json(data);
 })
 
 app.put('/words/::id', (req, res)=> {
