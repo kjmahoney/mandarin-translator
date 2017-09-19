@@ -20,11 +20,10 @@ const wordsArray = [
 ];
 let id = 2;
 
+app.set("view engine", "hbs")
 app.use(express.static(__dirname + '/' + sitePath));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-
-app.set('view-engine', 'hbs');
 
 app.use((req, res, next) => {
   console.log(req.url);
@@ -32,13 +31,14 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/vocabs', (req,res)=> {
-  res.json(wordsArray);
+app.get('/words', (req,res)=> {
+  // res.json(wordsArray);
+  res.render('index', {wordsArray})
 })
 
-app.get('/vocabs/:id', (req, res) => {
-  let idiom = _.find(idiomsArray, {id: req.params.id});
-  res.json(idiom || {});
+app.get('/words/:id', (req, res) => {
+  let word = _.find(wordsArray, {id: req.params.id});
+  res.render('show', {word})
 })
 
 app.post('/', (req,res) => {
@@ -68,7 +68,7 @@ app.delete('/vocabs/:id', (req, res)=> {
   let word = _.findIndex(words, {id: req.params.id});
   let deletedWord = words[word];
   wordArray.splice(word, 1);
-  res.json(deletedWord)l
+  res.json(deletedWord)
 })
 //Error handling for every route
 app.use((err, req, res, next) =>{
