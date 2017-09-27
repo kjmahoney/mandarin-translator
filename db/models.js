@@ -1,9 +1,9 @@
 const mongoose = require('./connection');
 
 const wordSchema = new mongoose.Schema({
-  English: String,
-  Chinese: String,
-  Pinyin: String
+  english: String,
+  chinese: String,
+  pinyin: String
 });
 
 module.exports = {

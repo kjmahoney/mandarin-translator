@@ -5,6 +5,9 @@ const _ = require('lodash');
 const app = express();
 const port = 4000;
 const hbs = require('hbs');
+const mongoose = require('./db/connection');
+const models = require('./db/models');
+const Word = mongoose.model('Word');
 
 const wordsArray = [
   {id: '0',
@@ -27,27 +30,28 @@ app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   console.log(req.url);
-  // next() with no arguments allows to pretend you didn't handle the route so that something else can pick it up instead.
   next();
 });
 
 app.get('/words', (req,res)=> {
-  // res.json(wordsArray);
-  res.render('index', {wordsArray})
-})
 
-app.get('/words/:id', (req, res) => {
-  let word = _.find(wordsArray, {id: req.params.id});
-  res.render('show', {word})
-})
+  Word.find({}).then(function(words) {
+    console.log(words);
+    res.render('index', {
+      words: words
+    });
+  })
+});
 
 app.post('/', (req,res) => {
   let data = req.body;
-  wordsArray.push({id: String(id),
-                    chinese: data.output,
-                    english: data.input,
-                    pinyin: data.pinyin
-                  });
+
+  wordsArray.push({
+    id: String(id),
+    chinese: data.output,
+    english: data.input,
+    pinyin: data.pinyin
+  });
   id +=1;
 })
 
@@ -77,3 +81,5 @@ app.use((err, req, res, next) =>{
 app.listen(port, ()=>{
   console.log(`server running at ${port}`);
 });
+
+module.exports = wordsArray;
