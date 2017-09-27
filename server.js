@@ -34,9 +34,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/words', (req,res)=> {
-
   Word.find({}).then(function(words) {
-    console.log(words);
     res.render('index', {
       words: words
     });
@@ -45,14 +43,8 @@ app.get('/words', (req,res)=> {
 
 app.post('/', (req,res) => {
   let data = req.body;
-
-  wordsArray.push({
-    id: String(id),
-    chinese: data.output,
-    english: data.input,
-    pinyin: data.pinyin
-  });
-  id +=1;
+  console.log(data);
+  Word.create(data)
 })
 
 app.put('/words/::id', (req, res)=> {
@@ -67,7 +59,7 @@ app.put('/words/::id', (req, res)=> {
   }
 })
 
-app.delete('/vocabs/:id', (req, res)=> {
+app.delete('/words', (req, res)=> {
   let word = _.findIndex(words, {id: req.params.id});
   let deletedWord = words[word];
   wordArray.splice(word, 1);
