@@ -59,12 +59,26 @@ app.put('/words/::id', (req, res)=> {
   }
 })
 
-app.delete('/words', (req, res)=> {
-  let word = _.findIndex(words, {id: req.params.id});
-  let deletedWord = words[word];
-  wordArray.splice(word, 1);
-  res.json(deletedWord)
+app.post('/words/:english/delete', (req, res) => {
+  Word.findOneAndRemove({english: req.params.english}).then(() => {
+    res.redirect('/words');
+  });
 })
+
+
+// app.delete("/words/:english", function(req, res){
+//   console.log('hello');
+//   Deck.findOneAndRemove({english: req.params.english}).then(function(){
+//     res.json({ success: true })
+//   });
+// });
+
+// app.delete('/words', (req, res)=> {
+//   let word = _.findIndex(words, {id: req.params.id});
+//   let deletedWord = words[word];
+//   res.json(deletedWord)
+// })
+
 //Error handling for every route
 app.use((err, req, res, next) =>{
   console.log(err);

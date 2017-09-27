@@ -3,6 +3,10 @@
     <li>{{this.chinese}}</li>
     <li>{{this.pinyin}}</li>
     <li>{{this.english}}</li>
+
+    <form class="" action="/words/{{this.english}}/delete" method="post">
+      <button type="submit">Delete</button>
+    </form>
   {{/each}}
 </ul>
 
