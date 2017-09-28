@@ -9,20 +9,6 @@ const mongoose = require('./db/connection');
 const models = require('./db/models');
 const Word = mongoose.model('Word');
 
-const wordsArray = [
-  {id: '0',
-   chinese: '帅',
-   english: 'handsome',
-   pinyin: 'shuai4'
- },
-  {id: '1',
-  chinese: '难看',
-  english: 'ugly',
-  pinyin: 'nan2kan4',
-  }
-];
-let id = 2;
-
 app.set("view engine", "hbs")
 app.use(express.static(__dirname + '/' + sitePath));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -43,21 +29,14 @@ app.get('/words', (req,res)=> {
 
 app.post('/', (req,res) => {
   let data = req.body;
-  console.log(data);
   Word.create(data)
-})
+});
 
-app.put('/words/::id', (req, res)=> {
-  let update = req.body;
-
-  let word = _.findIndex(wordsArray, {id: req.params.id})
-  if (!words[word]) {
-    res.send();
-  } else {
-    let updatedWord = _.assign(wordsArray[word], update);
-    res.json(updatedWord);
-  }
-})
+app.post('/words/:english', (req, res) => {
+  Word.findOneAndUpdate({english: req.params.english},req.body, {new: true}).then(() => {
+      res.redirect('/words')
+  });
+});
 
 app.post('/words/:english/delete', (req, res) => {
   Word.findOneAndRemove({english: req.params.english}).then(() => {
@@ -65,27 +44,6 @@ app.post('/words/:english/delete', (req, res) => {
   });
 })
 
-
-// app.delete("/words/:english", function(req, res){
-//   console.log('hello');
-//   Deck.findOneAndRemove({english: req.params.english}).then(function(){
-//     res.json({ success: true })
-//   });
-// });
-
-// app.delete('/words', (req, res)=> {
-//   let word = _.findIndex(words, {id: req.params.id});
-//   let deletedWord = words[word];
-//   res.json(deletedWord)
-// })
-
-//Error handling for every route
-app.use((err, req, res, next) =>{
-  console.log(err);
-})
-
 app.listen(port, ()=>{
   console.log(`server running at ${port}`);
 });
-
-module.exports = wordsArray;

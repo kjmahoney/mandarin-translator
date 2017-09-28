@@ -1,12 +1,16 @@
 <ul>
   {{#each words}}
-    <li>{{this.chinese}}</li>
-    <li>{{this.pinyin}}</li>
-    <li>{{this.english}}</li>
-
+  <li>
+    <form class="" action="/words/{{this.english}}" method="post">
+      <input type="text" name="chinese" value="{{this.chinese}}">
+      <input type="text" name="english" value="{{this.english}}">
+      <input type="text" name="pinyin" value="{{this.pinyin}}">
+      <button type="submit">Submit Changes</button>
+    </form>
     <form class="" action="/words/{{this.english}}/delete" method="post">
       <button type="submit">Delete</button>
     </form>
+    </li>
   {{/each}}
 </ul>
 
