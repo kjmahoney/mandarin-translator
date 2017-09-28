@@ -1,15 +1,20 @@
 <ul>
   {{#each words}}
   <li>
-    <form class="" action="/words/{{this.english}}" method="post">
-      <input type="text" name="chinese" value="{{this.chinese}}">
-      <input type="text" name="english" value="{{this.english}}">
-      <input type="text" name="pinyin" value="{{this.pinyin}}">
-      <button type="submit">Submit Changes</button>
+    <form class="c-index__form" action="/words/{{this.english}}" method="post">
+      <div class="c-index__container c-index__container--top-row">
+        <div class="c-index__container">
+          <input class="c-index__field c-index__field--chinese c-index__input--adjust" name="chinese" value="{{this.chinese}}">
+          <input class="c-index__field c-index__field--pinyin c-index__input--adjust" name="pinyin" value="{{this.pinyin}}">
+          <button type="submit">Submit Changes</button>
+        </div>
+      </div>
+      <input class="c-index__field c-index__field--english c-index__input--adjust" name="english" value="{{this.english}}">
     </form>
     <form class="" action="/words/{{this.english}}/delete" method="post">
       <button type="submit">Delete</button>
     </form>
+
     </li>
   {{/each}}
 </ul>
