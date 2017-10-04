@@ -9,10 +9,14 @@ const mongoose = require('./db/connection');
 const models = require('./db/models');
 const Word = mongoose.model('Word');
 
-app.set("view engine", "hbs")
-app.use(express.static(__dirname + '/' + sitePath));
+app.set("view engine", ".hbs")
+app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+app.get("/", (req,res)=>{
+  res.render('layouts', {})
+})
 
 app.use((req, res, next) => {
   console.log(req.url);
