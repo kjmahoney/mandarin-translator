@@ -50,8 +50,7 @@ gulp.task('js', ()=> {
 
 gulp.task('serve', ()=> {
   browserSync.init({
-    server: {
-      baseDir: './'
-    }
+    port: 9000,
+    proxy: 'localhost:4000'
   })
 })
