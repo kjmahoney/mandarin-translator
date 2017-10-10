@@ -7,16 +7,16 @@ const sass = require('gulp-sass');
 gulp.task('default', ['watch', 'serve']);
 
 gulp.task('bundle', function() {
-  return browserify('./app')
+  return browserify('./public/js/app')
           .bundle()
           .pipe(source('bundle.js'))
-          .pipe(gulp.dest('./'));
+          .pipe(gulp.dest('./public/js/'));
 });
 
 gulp.task('sass', function () {
   return gulp.src('sass/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./css/'));
+    .pipe(gulp.dest('./public/css/'));
 });
 
 gulp.task('sass:watch', function () {
@@ -32,7 +32,7 @@ gulp.task('watch', () => {
 
 gulp.task('css', () => {
   return gulp
-          .src('style.css')
+          .src('public/css/*.css')
           .pipe(browserSync.stream());
 });
 
@@ -42,9 +42,9 @@ gulp.task('html', () => {
           .pipe(browserSync.stream());
 });
 
-gulp.task('js', ()=> {
+gulp.task('js', () => {
   return gulp
-          .src('app.js')
+          .src('public/js/app.js')
           .pipe(browserSync.stream());
 });
 

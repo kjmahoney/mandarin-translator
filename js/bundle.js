@@ -1,47 +1,4 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-const pinyin = require("pinyin");
-const translate = function(e) {
-  e.preventDefault();
-
-  let word = document.getElementById('translate-input').value;
-  let fromLanguage = document.getElementById('translate-from-dropdown').value;
-  let languageUrl = '&lang=en-zh';
-
-  if (fromLanguage === 'zh') {
-    languageUrl = '&lang=zh-en'
-  }
-
-  let APIUrl = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=trns'
-  +'l.1.1.20161224T005353Z.9e104eecc7c8560f.938a2af78ac0f6868c443d729e48ee590e87d897&text='
-  +word
-  +languageUrl
-
-  let request = new Request(APIUrl);
-
-  fetch(request).then((response) => {
-    return response.json().then(function(json){
-      //if user inputs chinese word then pinyin the characters in input field
-      let pronounce = pinyin(word);
-      //if user inputs english, pinyin the chinese json response
-      if (fromLanguage === 'en') {
-          pronounce = pinyin(json.text[0]);
-      }
-      //pinyin returns an array of each character translated so make string
-      let pinyinArray = [];
-
-      for (i=0;i<pronounce.length;i++) {
-        pinyinArray.push(pronounce[i][0]);
-      }
-
-      document.getElementById('translate-output').value = json.text[0];
-      document.getElementById('pronounce-output').value = pinyinArray.join('');
-    })
-  })
-}
-
-document.getElementById('translate-input').addEventListener('change', translate);
-
-},{"pinyin":6}],2:[function(require,module,exports){
 /*
 object-assign
 (c) Sindre Sorhus
@@ -133,7 +90,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	return to;
 };
 
-},{}],3:[function(require,module,exports){
+},{}],2:[function(require,module,exports){
 module.exports = {
 "èr":"二贰",
 "shí":"十时实蚀",
@@ -1679,7 +1636,7 @@ module.exports = {
 "ráng":"瓤",
 };
 
-},{}],4:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 // 带音标字符。
 module.exports = {
   "ā": "a1",
@@ -1711,7 +1668,7 @@ module.exports = {
   "": "m2",
 };
 
-},{}],5:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 "use strict";
 
 const assign = require("object-assign");
@@ -1923,7 +1880,7 @@ class Pinyin {
 
 module.exports = Pinyin;
 
-},{"./phonetic-symbol":4,"object-assign":2}],6:[function(require,module,exports){
+},{"./phonetic-symbol":3,"object-assign":1}],5:[function(require,module,exports){
 "use strict";
 
 // 解压拼音库。
@@ -1961,4 +1918,47 @@ module.exports.STYLE_TO3NE = Pinyin.STYLE_TO3NE;
 module.exports.STYLE_INITIALS = Pinyin.STYLE_INITIALS;
 module.exports.STYLE_FIRST_LETTER = Pinyin.STYLE_FIRST_LETTER;
 
-},{"../data/dict-zi-web":3,"./pinyin":5}]},{},[1]);
+},{"../data/dict-zi-web":2,"./pinyin":4}],6:[function(require,module,exports){
+const pinyin = require("pinyin");
+const translate = function(e) {
+  e.preventDefault();
+
+  let word = document.getElementById('translate-input').value;
+  let fromLanguage = document.getElementById('translate-from-dropdown').value;
+  let languageUrl = '&lang=en-zh';
+
+  if (fromLanguage === 'zh') {
+    languageUrl = '&lang=zh-en'
+  }
+
+  let APIUrl = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=trns'
+  +'l.1.1.20161224T005353Z.9e104eecc7c8560f.938a2af78ac0f6868c443d729e48ee590e87d897&text='
+  +word
+  +languageUrl
+
+  let request = new Request(APIUrl);
+
+  fetch(request).then((response) => {
+    return response.json().then(function(json){
+      //if user inputs chinese word then pinyin the characters in input field
+      let pronounce = pinyin(word);
+      //if user inputs english, pinyin the chinese json response
+      if (fromLanguage === 'en') {
+          pronounce = pinyin(json.text[0]);
+      }
+      //pinyin returns an array of each character translated so make string
+      let pinyinArray = [];
+
+      for (i=0;i<pronounce.length;i++) {
+        pinyinArray.push(pronounce[i][0]);
+      }
+
+      document.getElementById('translate-output').value = json.text[0];
+      document.getElementById('pronounce-output').value = pinyinArray.join('');
+    })
+  })
+}
+
+document.getElementById('translate-input').addEventListener('change', translate);
+
+},{"pinyin":5}]},{},[6]);
