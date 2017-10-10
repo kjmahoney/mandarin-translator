@@ -4,33 +4,40 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Translatehbs</title>
-    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js" charset="utf-8"></script>
   </head>
   <body>
 
-<ul>
+<div class="c-index__container  ">
+
   {{#each words}}
-  <li>
-    <form class="c-index__form" action="/words/{{this.english}}" method="post">
+
+  <div class="c-index__container c-index__container--forms">
+
+    <form class="c-index__container c-index__form" action="/words/{{this.english}}" method="post">
       <div class="c-index__container c-index__container--top-row">
-        <div class="c-index__container">
+        <div class="c-index__container c-index__container--top-row">
           <input class="c-index__field c-index__field--chinese c-index__input--adjust" name="chinese" value="{{this.chinese}}">
           <input class="c-index__field c-index__field--pinyin c-index__input--adjust" name="pinyin" value="{{this.pinyin}}">
-          <button type="submit">Submit Changes</button>
         </div>
       </div>
       <input class="c-index__field c-index__field--english c-index__input--adjust" name="english" value="{{this.english}}">
-    </form>
-    <form class="" action="/words/{{this.english}}/delete" method="post">
-      <button type="submit">Delete</button>
+      <button type="submit">Submit</button>
     </form>
 
-    </li>
+    <form class="c-index__form" action="/words/{{this.english}}/delete" method="post">
+      <button type="submit">x</button>
+    </form>
+
+  </div>
+
   {{/each}}
-</ul>
+
+</div>
 
 <a href="/">Back</a>
+<script src="./js/dynamic-inbox.js" charset="utf-8"></script>
 
 </body>
 </html>
