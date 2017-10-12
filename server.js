@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.get("/", (req,res)=>{
-  res.render('layouts', {})
+  res.render('home', {})
 })
 
 app.use((req, res, next) => {

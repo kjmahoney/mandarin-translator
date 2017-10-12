@@ -14,20 +14,20 @@ gulp.task('bundle', function() {
 });
 
 gulp.task('sass', function () {
-  return gulp.src('sass/**/*.scss')
+  return gulp.src('public/sass/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./public/css/'));
 });
 
 gulp.task('sass:watch', function () {
-  gulp.watch('sass/**/*.scss', ['sass']);
+  gulp.watch('public/sass/**/*.scss', ['sass']);
 });
 
 gulp.task('watch', () => {
   gulp.watch('./**/*.css', ['css']);
   gulp.watch('./**/*.html', ['html']);
   gulp.watch('./**/*.js', ['js', 'bundle']);
-  gulp.watch('sass/**/*.scss', ['sass']);
+  gulp.watch('public/sass/**/*.scss', ['sass']);
 });
 
 gulp.task('css', () => {
