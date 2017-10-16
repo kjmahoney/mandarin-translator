@@ -1955,8 +1955,8 @@ const translate = function(e) {
 
       document.getElementById('translate-output').value = json.text[0];
       document.getElementById('pronounce-output').value = pinyinArray.join('');
-    })
-  })
+    });
+  });
 }
 
 document.getElementById('translate-input').addEventListener('change', translate);

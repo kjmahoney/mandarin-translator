@@ -1,17 +1,31 @@
 const gulp = require('gulp');
 const browserSync = require('browser-sync');
 const browserify = require('browserify');
+const es = require('event-stream');
+const glob = require('glob');
+const rename = require('gulp-rename');
 const source = require('vinyl-source-stream');
 const sass = require('gulp-sass');
 
 gulp.task('default', ['watch', 'serve']);
 
-gulp.task('bundle', function() {
-  return browserify('./public/js/app')
+gulp.task('bundle', function(done) {
+
+  glob('./public/js/**.js', (err, files) => {
+    if(err) done(err);
+
+  const tasks = files.map((entry) => {
+    console.log('HERE' + entry);
+    return browserify({entries: [entry]})
           .bundle()
-          .pipe(source('bundle.js'))
-          .pipe(gulp.dest('./public/js/'));
+          .pipe(source(entry))
+          .pipe(rename('bundle.js'))
+        .pipe(gulp.dest('./public'));
+  });
+  es.merge(tasks).on('end', done);
+})
 });
+
 
 gulp.task('sass', function () {
   return gulp.src('public/sass/**/*.scss')
